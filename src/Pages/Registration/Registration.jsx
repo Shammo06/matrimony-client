@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const LogIn = () => {
+const Registration = () => {
 
 const defaultTheme = createTheme();
 
@@ -39,11 +39,31 @@ const defaultTheme = createTheme();
                 <LockOutlinedIcon />
               </Avatar>
               <Typography component="h1" variant="h5">
-                Please Log In
+                Sign up
               </Typography>
               <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
-                  
+                  <Grid item xs={12} >
+                    <TextField
+                      autoComplete="given-name"
+                      name="Name"
+                      required
+                      fullWidth
+                      id="Name"
+                      label="Your Name"
+                      autoFocus
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="PhotoURL"
+                      label="Photo URL"
+                      name="PhotoURL"
+                      autoComplete="family-name"
+                    />
+                  </Grid>
                   <Grid item xs={12}>
                     <TextField
                       required
@@ -59,7 +79,7 @@ const defaultTheme = createTheme();
                       required
                       fullWidth
                       name="password"
-                      label="Your Password"
+                      label="Password"
                       type="password"
                       id="password"
                       autoComplete="new-password"
@@ -77,8 +97,8 @@ const defaultTheme = createTheme();
                 </Button>
                 <Grid container justifyContent="flex-end">
                   <Grid item>
-                    <Link href='/registration' variant="body2">
-                      New to BiyeShadi? LogIn
+                    <Link href='/logIn' variant="body2">
+                      Already have an account? Sign in
                     </Link>
                   </Grid>
                 </Grid>
@@ -89,4 +109,4 @@ const defaultTheme = createTheme();
     );
 };
 
-export default LogIn;
+export default Registration;

@@ -13,8 +13,6 @@ import MenuItem from '@mui/material/MenuItem';
 import logo from '../../../public/logo.png'
 import { Link} from "react-router-dom";
 
-const pages = ['Home', 'Biodatas', 'About Us' ];
-
 
 const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
