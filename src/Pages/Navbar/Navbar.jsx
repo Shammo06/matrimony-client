@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import logo from '../../../public/logo.png'
 import { Link} from "react-router-dom";
@@ -146,11 +145,15 @@ const Navbar = () => {
                     Contact Us
                 </Button>
                 </Link>
+                <Link>
+                <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+                    Dashboard
+                </Button>
+                </Link>
              
                 </Box>
-
-                <Box sx={{ flexGrow: 0 }}>
-                
+                <Box sx={{ flexGrow: 0 }}>               
+                                
                 <Link to='/logIn'> <Button variant="contained">LogIn</Button></Link>
                 
                 <Menu

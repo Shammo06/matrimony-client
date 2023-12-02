@@ -25,7 +25,7 @@ const defaultTheme = createTheme();
     
       return (
         <ThemeProvider theme={defaultTheme}>
-          <Container component="main" maxWidth="xs">
+          <Container component="main" maxWidth="xs"  style={{ paddingTop: '20px', paddingBottom: '20px' }}>
             <CssBaseline />
             <Box
               sx={{
