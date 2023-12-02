@@ -6,7 +6,8 @@ import logo from '../../../public/logo.png'
 
 const Footer = () => {
     return (
-       <Container>
+       <div className="bg-gray-400 text-white">
+        <Container>
         <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={4} lg={3}>
          <Typography variant='h6' sx={{margin:'10px'}}>
@@ -37,6 +38,7 @@ const Footer = () => {
         </Grid>
        
         </Container>
+       </div>
     );
 };
 
