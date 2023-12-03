@@ -9,6 +9,8 @@ import {
 import Home from './Pages/Home/Home.jsx';
 import LogIn from './Pages/LogIn/LogIn.jsx';
 import Registration from './Pages/Registration/Registration.jsx';
+import Dashboard from './Pages/Dashboard/Dashboard.jsx';
+import Biodatas from './Pages/Biodatas/Biodatas.jsx';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +28,18 @@ const router = createBrowserRouter([
       {
         path: '/registration',
         element: <Registration></Registration>
+      },
+      {
+        path: '/biodatas',
+        element: <Biodatas></Biodatas>
       }
+    ]
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children :[
+
     ]
   }
 ]);

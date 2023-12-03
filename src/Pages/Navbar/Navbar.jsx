@@ -86,7 +86,7 @@ const Navbar = () => {
                         <Typography textAlign="center">Home</Typography>
                     </MenuItem>
                     </Link>
-                    <Link to='/'> <MenuItem onClick={handleCloseNavMenu}>
+                    <Link to='/biodatas'> <MenuItem onClick={handleCloseNavMenu}>
                         <Typography textAlign="center">Biodatas</Typography>
                     </MenuItem>
                     </Link>
@@ -130,8 +130,8 @@ const Navbar = () => {
                     Home
                 </Button>
                 </Link>
-                <Link>
-                <Button href='/' onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+                <Link to='/biodatas'>
+                <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
                     Biodatas
                 </Button>
                 </Link>
@@ -145,7 +145,7 @@ const Navbar = () => {
                     Contact Us
                 </Button>
                 </Link>
-                <Link>
+                <Link to='/dashboard'>
                 <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
                     Dashboard
                 </Button>

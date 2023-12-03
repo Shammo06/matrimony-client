@@ -1,13 +1,16 @@
 import Banner from "./Banner";
+import BioData from "./BioData";
 import HowWork from "./HowWork";
+import SuccessStory from "./SuccessStory";
 
 
 const Home = () => {
     return (
         <div>
             <Banner></Banner>
-           <HowWork></HowWork>
-            <h1>hello</h1>            
+            <BioData></BioData>
+            <HowWork></HowWork>
+            <SuccessStory></SuccessStory>           
         </div>
     );
 };
