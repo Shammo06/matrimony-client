@@ -9,22 +9,68 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useContext } from 'react';
+import { AuthContext } from '../../AuthContext/AuthProvider';
+import swal from 'sweetalert';
+import { useNavigate } from "react-router-dom";
+import { updateProfile } from 'firebase/auth';
+
+
 
 const Registration = () => {
-
+  const {createUser,logOut} = useContext(AuthContext);
+  const navigate = useNavigate();
 const defaultTheme = createTheme();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-          email: data.get('email'),
-          password: data.get('password'),
-        });
+        const email = data.get('email');
+        const password = data.get('password')
+        const name = data.get('name');
+        const photo = data.get('PhotoURL')
+        if (password.length < 6) {
+          swal({
+              text: "Password should be at least 6 letter",
+              timer: 2000
+            });
+          return
+      }
+      if (!/[A-Z]/.test(password)) {
+          swal({
+              text: "Password must contain at least one capital letter",
+              timer: 2000
+            })
+          return
+      }
+      // if (!/[!@#$%^&*()_+\-={};':"\\|,.<>/?]+/.test(password)){
+      //     swal({
+      //         text: "Password must contain at least one special character",
+      //         timer: 2000
+      //       })
+      //     return
+      // }    
+
+      createUser(email,password)
+      .then(result => {
+          updateProfile(result.user, {
+              displayName: name,
+              photoURL:photo
+          })
+          logOut()
+          swal('Successfully Registered Please Log In')
+          navigate('/LogIn')      
+                         
+      })
+      .catch((error) => {
+          const message= error.message
+          swal(message)
+      })
       };
     
       return (
-        <ThemeProvider theme={defaultTheme}>
+        <div className="py-10">
+          <ThemeProvider theme={defaultTheme}>
           <Container component="main" maxWidth="xs"  style={{ paddingTop: '20px', paddingBottom: '20px' }}>
             <CssBaseline />
             <Box
@@ -46,10 +92,10 @@ const defaultTheme = createTheme();
                   <Grid item xs={12} >
                     <TextField
                       autoComplete="given-name"
-                      name="Name"
+                      name="name"
                       required
                       fullWidth
-                      id="Name"
+                      id="name"
                       label="Your Name"
                       autoFocus
                     />
@@ -58,9 +104,9 @@ const defaultTheme = createTheme();
                     <TextField
                       required
                       fullWidth
-                      id="PhotoURL"
+                      id="photoURL"
                       label="Photo URL"
-                      name="PhotoURL"
+                      name="photoURL"
                       autoComplete="family-name"
                     />
                   </Grid>
@@ -98,7 +144,7 @@ const defaultTheme = createTheme();
                 <Grid container justifyContent="flex-end">
                   <Grid item>
                     <Link href='/logIn' variant="body2">
-                      Already have an account? Sign in
+                      Already have an account? Log in
                     </Link>
                   </Grid>
                 </Grid>
@@ -106,6 +152,7 @@ const defaultTheme = createTheme();
             </Box>
             </Container>
         </ThemeProvider>
+        </div>
     );
 };
 

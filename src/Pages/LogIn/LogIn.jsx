@@ -9,22 +9,43 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useContext } from 'react';
+import { AuthContext } from '../../AuthContext/AuthProvider';
+import swal from 'sweetalert';
+import { useNavigate } from "react-router-dom";
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import auth from '../../firebase/firebase.config';
 
 const LogIn = () => {
-
+const provider = new GoogleAuthProvider();
+const navigate = useNavigate();
 const defaultTheme = createTheme();
+const {logIn} = useContext(AuthContext);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-          email: data.get('email'),
-          password: data.get('password'),
-        });
+        const email = data.get('email');
+        const password = data.get('password')
+        console.log(email,password)
+        logIn(email , password)
+        .then(result =>console.log(result))
+        .catch((error)=>{
+            swal(`${error.message}`)
+        })
       };
-    
+      const handleClick = () => {
+        signInWithPopup(auth,provider)
+        .then(result =>{
+            console.log(result.user.email)
+
+            navigate(location.state ? location.state : '/')
+        })
+        .catch(error=>console.log(error.message))
+      }
       return (
-        <ThemeProvider theme={defaultTheme}>
+       <div className="py-10">
+         <ThemeProvider theme={defaultTheme}>
           <Container component="main" maxWidth="xs"  style={{ paddingTop: '20px', paddingBottom: '20px' }}>
             <CssBaseline />
             <Box
@@ -73,19 +94,24 @@ const defaultTheme = createTheme();
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Sign Up
+                  Log In
                 </Button>
+                 <Grid item>
+                    <Button  fullWidth variant="contained" onClick={handleClick}>Log in With Google</Button>
+                  </Grid>
                 <Grid container justifyContent="flex-end">
                   <Grid item>
                     <Link href='/registration' variant="body2">
-                      New to BiyeShadi? LogIn
+                      New to BiyeShadi? Sign Up
                     </Link>
                   </Grid>
+                 
                 </Grid>
               </Box>
             </Box>
             </Container>
         </ThemeProvider>
+       </div>
     );
 };
 
