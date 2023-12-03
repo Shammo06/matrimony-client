@@ -1,5 +1,6 @@
 import Banner from "./Banner";
 import BioData from "./BioData";
+import Counter from "./Counter";
 import HowWork from "./HowWork";
 import SuccessStory from "./SuccessStory";
 
@@ -10,7 +11,8 @@ const Home = () => {
             <Banner></Banner>
             <BioData></BioData>
             <HowWork></HowWork>
-            <SuccessStory></SuccessStory>           
+            <SuccessStory></SuccessStory> 
+            <Counter></Counter>          
         </div>
     );
 };

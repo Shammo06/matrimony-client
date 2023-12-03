@@ -15,13 +15,7 @@ import ViewDetails from './Pages/ViewDetails/ViewDetails.jsx';
 import AuthProvider from './AuthContext/AuthProvider.jsx';
 import EditBiodata from './NormalUser/EditBiodata.jsx';
 import ViewBiodata from './NormalUser/ViewBiodata.jsx';
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
+import {QueryClient,QueryClientProvider} from '@tanstack/react-query'
 
 const queryClient = new QueryClient()
 

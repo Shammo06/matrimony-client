@@ -7,7 +7,7 @@ import Details from '../Shared/Details';
 
 const ViewBiodata = () => {
     const [data,refetch] = useData();
-    const item = data.find(item => item.email === 'rahman@gmail.com');
+    const item = data.find(item => item && item.email === 'rahman@gmail.com');
     const handleClick= () =>{
         fetch(`http://localhost:5000/biodata/${item._id}`, {
             method: 'PATCH',
