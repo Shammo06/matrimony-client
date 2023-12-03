@@ -13,6 +13,17 @@ import Dashboard from './Pages/Dashboard/Dashboard.jsx';
 import Biodatas from './Pages/Biodatas/Biodatas.jsx';
 import ViewDetails from './Pages/ViewDetails/ViewDetails.jsx';
 import AuthProvider from './AuthContext/AuthProvider.jsx';
+import EditBiodata from './NormalUser/EditBiodata.jsx';
+import ViewBiodata from './NormalUser/ViewBiodata.jsx';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   {
@@ -46,7 +57,14 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
     children :[
-
+      {
+        path: '/dashboard/editbiodata',
+        element: <EditBiodata></EditBiodata>
+      },
+      {
+        path: '/dashboard/viewbiodata',
+        element: <ViewBiodata></ViewBiodata>
+      }
     ]
   }
 ]);
@@ -54,7 +72,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-    <RouterProvider router={router}/>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router}/>
+      </QueryClientProvider>   
    </AuthProvider>
   </React.StrictMode>,
 )

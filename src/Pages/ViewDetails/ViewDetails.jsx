@@ -1,12 +1,13 @@
 import { useLoaderData } from "react-router-dom";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Button } from "@mui/base";
 import axios from "axios";
 import ShareBiodata from "../../Shared/ShareBiodata";
 import { useEffect, useState } from "react";
 import swal from "sweetalert";
+import Details from "../../Shared/Details";
+import Card from '@mui/material/Card';
+
 
 const ViewDetails = () => {
     const data = useLoaderData();
@@ -18,7 +19,8 @@ const ViewDetails = () => {
     })
 
     const handleFavourite = () =>{
-        axios.post('http://localhost:5000/favourite', {data, userEmail:"shammo@gmail.com"})
+        data["userEmail"]="shammo@gmail.com"
+        axios.post('http://localhost:5000/favourite', data)
           .then(response  => {
             if(response.data.insertedId){
                 swal("Successfully", "Added Successfully to Favourite", "success");
@@ -28,42 +30,32 @@ const ViewDetails = () => {
             console.log(error);
           }); 
     }
+    const handleClick= () =>{
+        console.log(data)
+    }
+
+
     
     return (
         <div className="md:flex">
             <div className="py-10 px-28 border-r-2 border-orange-300">
             <Card sx={{ maxWidth: 345 }}>
-            <img src={data.image} className=' w-full' />         
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    Biodata ID: {data.biodataID}
-                </Typography>
-                <Typography gutterBottom variant="h5" component="div">
-                Biodata Type: {data.sex}
-                </Typography>  
-                <Typography gutterBottom variant="h5" component="div">
-                Name: {data.name} years
-                </Typography>
-                <Typography gutterBottom variant="h5" component="div">
-                Age: {data.age} years
-                </Typography>
-                <Typography variant="h5" component="div">
-                Division Name: {data.division}
-                </Typography>
-                <Typography gutterBottom variant="h5" component="div">
-                    Occupation: {data.occupation}
-                </Typography>
+            <img src={data.image} className=' w-full' /> 
+            {
+                <Details item={data}/>
+            }
+                <Typography gutterBottom variant="h5" component="div">Permanent Address: {data.division}</Typography>
+                <Typography gutterBottom variant="h5" component="div">Present Address: {data.presentDivision}</Typography>
+                <Typography gutterBottom variant="h5" component="div">Email: {data.email}</Typography>    
+                <Typography gutterBottom variant="h5" component="div">Mobile: {data.mobile}</Typography>
                 
-                <Typography  variant="h5" component="div">Contact: {data.contact}</Typography>
-                <Typography  variant="h5" component="div">Mobile: {data.mobile}</Typography>    
                 <Typography gutterBottom variant="h5" component="div">
-                    <Button size="small">Request Contact Information</Button>
+                    <Button className='rounded-lg w-full text-white bg-blue-700' onClick={handleClick} variant="contained" size="small">Request Contact Information</Button>
                 </Typography>
                 
                 <Typography gutterBottom variant="h5" component="div">
-                    <Button size="small" onClick={handleFavourite}>Add to Favourite</Button>
+                    <Button className='rounded-lg w-full text-white bg-blue-700' size="small" onClick={handleFavourite}>Add to Favourite</Button>
                 </Typography>
-            </CardContent>
             </Card>
             </div>
             <div className="gap-24 py-10 ">
