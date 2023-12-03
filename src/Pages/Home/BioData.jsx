@@ -1,9 +1,6 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import ShareBiodata from '../../Shared/ShareBiodata';
 
 const BioData = () => {
     const [data,setData] = useState([]);
@@ -20,29 +17,7 @@ const BioData = () => {
             <div className='grid md:grid-cols-3 px-24'>
                 {
                     data.map(data=>
-                        <Card key={data._id} sx={{ maxWidth: 345 }}>
-                        <Typography gutterBottom variant="h5" component="div">
-                            Biodata ID: {data.biodataID}
-                        </Typography>
-                        <Typography gutterBottom variant="h5" component="div">
-                        Biodata Type: {data.sex}
-                        </Typography>
-                        <img src={data.image} className='h-64 w-full' />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                            Age: {data.age} years
-                            </Typography>
-                            <Typography variant="h5" component="div">
-                            Division Name: {data.division}
-                            </Typography>
-                            <Typography gutterBottom variant="h5" component="div">
-                                Occupation: {data.occupation}
-                            </Typography>
-                            <Typography gutterBottom variant="h5" component="div">
-                                <Button size="small">View Details</Button>
-                            </Typography>
-                        </CardContent>
-                        </Card>
+                        <ShareBiodata key={data._id} item={data}/>
                         )
                 }
             </div>   

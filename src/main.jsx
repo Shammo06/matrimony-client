@@ -11,6 +11,7 @@ import LogIn from './Pages/LogIn/LogIn.jsx';
 import Registration from './Pages/Registration/Registration.jsx';
 import Dashboard from './Pages/Dashboard/Dashboard.jsx';
 import Biodatas from './Pages/Biodatas/Biodatas.jsx';
+import ViewDetails from './Pages/ViewDetails/ViewDetails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,12 @@ const router = createBrowserRouter([
       {
         path: '/biodatas',
         element: <Biodatas></Biodatas>
-      }
+      },
+      {
+        path:"/biodata/:id",
+        element:<ViewDetails></ViewDetails>,
+        loader: ({ params }) => fetch(`http://localhost:5000/biodata/${params.id}`) 
+      },
     ]
   },
   {
