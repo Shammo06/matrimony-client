@@ -1,35 +1,37 @@
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 
 const SuccessStory = () => {
+    const [data,setData] = useState([])
     
+    useEffect(()=>{
+        axios.get('http://localhost:5000/successStory')
+        .then(res=> {
+            setData(res.data);           
+        })
+      })
     return (
-        <div>
+        <div className="py-20 md:px-24">
             <div className="text-center text-5xl py-14">Our Success Story</div>
-            <div className="">
-            <Card sx={{ maxWidth: 345 }}>
-            <CardHeader        
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
-            />
-            <CardMedia
-                component="img"
-                height="194"
-                image="/static/images/cards/paella.jpg"
-                alt="Paella dish"
-            />
-            <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                This impressive paella is a perfect party dish and a fun meal to cook
-                together with your guests. Add 1 cup of frozen peas along with the mussels,
-                if you like.
-                </Typography>
-            </CardContent>
-            </Card>
+            <div className="grid md:grid-cols-3 gap-8">
+            {
+                data.map(data=>
+                    <Card key={data._id} sx={{ maxWidth: 345 }}>
+                    <CardHeader        
+                        title={data.couple}
+                        subheader={data.date}
+                    />
+                    <img src={data.image} alt="" />
+                    <CardContent>
+                        <Typography variant="body2" color="text.secondary">{data.des}</Typography>
+                    </CardContent>
+                    </Card>)
+            }
             </div>
                       
         </div>

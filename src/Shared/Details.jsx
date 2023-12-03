@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 
 const Details = ({item}) => {
     const data = item;
+    console.log(data)
     return (
         <div>       
             <CardContent>

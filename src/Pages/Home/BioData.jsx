@@ -14,7 +14,7 @@ const BioData = () => {
     return (
         <div>
              <div className="text-center text-5xl py-14">Biodatas</div>      
-            <div className='grid md:grid-cols-3 px-24'>
+            <div className='grid md:grid-cols-3 md:px-24'>
                 {
                     data.map(data=>
                         <ShareBiodata key={data._id} item={data}/>
