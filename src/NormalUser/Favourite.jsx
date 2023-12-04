@@ -8,21 +8,24 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import useData from '../hook/useData';
 import swal from 'sweetalert';
 
 const Favourite = () => {
     const [data,setData] = useState([]);
     const {user} = useContext(AuthContext);
-    let item = data.filter(item => item && item.userEmail === `${user.email}`);
+    
     useEffect(()=>{
     axios.get(`https://matrimony-server-liart.vercel.app/favourite`)
-    .then(response =>{setData(response.data);
-        console.log(response.data)
+    .then(response =>{
+        const item = response.data.filter(item => item && item.userEmail === `${user.email}`);
+        setData(item);
+        
     });
     })
+    console.log(data)
     
     const handleDelete = (id) =>{
+        console.log(id)
         swal({
           title: "Are you sure?",
           text: "Once deleted, you will not be able to recover this donate food details",
@@ -31,18 +34,24 @@ const Favourite = () => {
           dangerMode: true,
         })
         .then((willDelete) => {
+            console.log(id)
           if (willDelete) {
-            fetch(`https://matrimony-server-liart.vercel.app/contactrequest/${id}`,{
+            fetch(`https://matrimony-server-liart.vercel.app/favourite/${id}`,{
               method: 'DELETE'
                })
               .then(res => res.json())
               .then(data => {
                 
                       swal("Deleted!", "Your contact has been deleted.", "success");                    
-                      item = item.filter(item => item._id !== id);                     
+                      const remaining = data.filter(item => item._id !== id);  
+                      setData(remaining)
+                                  
                       
                   
               })
+              .catch(error => {
+                console.error("Error deleting contact:", error);
+              });
           } 
         });
                     
