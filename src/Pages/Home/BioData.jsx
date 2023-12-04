@@ -5,7 +5,7 @@ import ShareBiodata from '../../Shared/ShareBiodata';
 const BioData = () => {
     const [data,setData] = useState([]);
     useEffect(()=>{
-    axios.get('http://localhost:5000/biodatas?biodataType=premium')
+    axios.get('https://matrimony-server-liart.vercel.app/biodatas?biodataType=premium')
     .then(response =>{setData(response.data);
         console.log(response.data)
     });

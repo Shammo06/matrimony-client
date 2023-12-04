@@ -2,14 +2,17 @@ import { useForm } from "react-hook-form"
 import useData from "../hook/useData"
 import axios from "axios"
 import swal from "sweetalert"
+import { AuthContext } from "../AuthContext/AuthProvider"
+import { useContext } from "react"
 
 const EditBiodata = () => {
+  const {user} = useContext(AuthContext)
   const { register, handleSubmit,reset } = useForm();
   const [data,refetch] = useData();
   let ID = data.length+1
   const onSubmit = (data) =>{
     data['biodataID']=ID   
-    axios.post('https://matrimony-server-6fqnjdrq2-shammo06.vercel.app/biodatas', data)
+    axios.post('https://matrimony-server-liart.vercel.app/biodatas', data)
     .then(response  => {
       if(response.statusText==='OK'){
           swal("Successfully", "Your Biodata Successfully Publish", "success");
@@ -143,7 +146,7 @@ const EditBiodata = () => {
         </div>
         <div className="form-group pt-3 ">
           <label className="input-label text-2xl flex">Your Email</label>
-          <input {...register('email', { required: true })} className="form-control border-2 text-black border-red-300 w-80" defaultValue='rahman@gmail.com' readOnly={true} />
+          <input {...register('email', { required: true })} className="form-control border-2 text-black border-red-300 w-80" defaultValue={user.email} readOnly={true} />
         </div>
         <div className="form-group pt-3 ">
           <label className="input-label text-2xl flex">Mobile Number</label>

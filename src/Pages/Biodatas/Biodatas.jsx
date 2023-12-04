@@ -11,7 +11,7 @@ const Biodatas = () => {
     
 
     useEffect(()=>{
-        axios(`https://matrimony-server-6fqnjdrq2-shammo06.vercel.app/biodata?sex=${sex.value}&division=${division.value}&age=${age.value}`)
+        axios(`https://matrimony-server-liart.vercel.app/biodata?sex=${sex.value}&division=${division.value}&age=${age.value}`)
         .then(res=>setData(res.data))
     })
     const type = [

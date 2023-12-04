@@ -58,7 +58,7 @@ const defaultTheme = createTheme();
               displayName: name,
               photoURL:photo
           })
-          axios.post('https://matrimony-server-6fqnjdrq2-shammo06.vercel.app/user', {email,role:"regular"})
+          axios.post('https://matrimony-server-liart.vercel.app/user', {email,role:"regular"})
           .then(res => {
               console.log(res.data)
               if (res.data.insertedId) {

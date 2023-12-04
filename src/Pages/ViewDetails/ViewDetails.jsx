@@ -14,13 +14,13 @@ const ViewDetails = () => {
     const [item, setItem] = useState([]);
     
     useEffect(()=>{
-        axios(`https://matrimony-server-6fqnjdrq2-shammo06.vercel.app/biodata?sex=${data.sex}`)
+        axios(`https://matrimony-server-liart.vercel.app/biodata?sex=${data.sex}`)
         .then(res=>setItem(res.data))
     })
 
     const handleFavourite = () =>{
         data["userEmail"]="shammo@gmail.com"
-        axios.post('https://matrimony-server-6fqnjdrq2-shammo06.vercel.app/favourite', data)
+        axios.post('https://matrimony-server-liart.vercel.app/favourite', data)
           .then(response  => {
             if(response.data.insertedId){
                 swal("Successfully", "Added Successfully to Favourite", "success");
@@ -31,8 +31,20 @@ const ViewDetails = () => {
           }); 
     }
     const handleClick= () =>{
-        console.log(data)
+        fetch(`https://matrimony-server-liart.vercel.app/biodata/${data._id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ biodataType: 'pending' })
+        })
+            .then(res => res.json())
+            .then(res => {if (res.modifiedCount > 0) {
+                   swal("Request make Successfully");
+                }
+            })
     }
+    
 
 
     

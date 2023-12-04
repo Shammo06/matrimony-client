@@ -1,13 +1,17 @@
 import { NavLink, Outlet } from "react-router-dom";
-import useUser from "../../hook/useData";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthContext/AuthProvider";
+import useUser from "../../hook/useUser";
 
 
 const Dashboard = () => {
     const [ID] = useUser();
-    const { user} = useContext(AuthContext);
+    const { user,logOut} = useContext(AuthContext);
     const data = ID.find(item => item && item.email === `${user.email}`);
+    
+    const handleClick = () =>{
+        logOut();
+    }
     return (
         <div className="flex">
             
@@ -20,7 +24,7 @@ const Dashboard = () => {
                                     <button className='bg-gray-400'>Admin Dashboard</button></NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/manageUsers">
+                                <NavLink to="/dashboard/manageuser">
                                     Manage Users
                                 </NavLink>
                             </li>
@@ -62,7 +66,7 @@ const Dashboard = () => {
                     }
                            
                     <li>
-                        <button className=''>Log Out</button>
+                        <button onClick={handleClick} className=''>Log Out</button>
                     </li>
                 </ul>
             </div>
