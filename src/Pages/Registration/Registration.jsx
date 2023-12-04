@@ -14,6 +14,7 @@ import { AuthContext } from '../../AuthContext/AuthProvider';
 import swal from 'sweetalert';
 import { useNavigate } from "react-router-dom";
 import { updateProfile } from 'firebase/auth';
+import axios from 'axios';
 
 
 
@@ -57,6 +58,7 @@ const defaultTheme = createTheme();
               displayName: name,
               photoURL:photo
           })
+          axios
           logOut()
           swal('Successfully Registered Please Log In')
           navigate('/LogIn')      

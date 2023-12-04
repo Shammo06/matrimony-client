@@ -1,6 +1,7 @@
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
+// eslint-disable-next-line react/prop-types
 const Details = ({item}) => {
     const data = item;
     console.log(data)

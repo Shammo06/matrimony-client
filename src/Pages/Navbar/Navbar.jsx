@@ -11,9 +11,12 @@ import Container from '@mui/material/Container';
 import MenuItem from '@mui/material/MenuItem';
 import logo from '../../../public/logo.png'
 import { Link} from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthContext/AuthProvider";
 
 
 const Navbar = () => {
+    const {user,logOut} = useContext(AuthContext);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -28,6 +31,8 @@ const Navbar = () => {
     const handleCloseUserMenu = () => {
     setAnchorElUser(null);
     };
+
+    const handleClick = () =>{logOut()}
     return (
         <div>
              <AppBar position="static">
@@ -90,11 +95,11 @@ const Navbar = () => {
                         <Typography textAlign="center">Biodatas</Typography>
                     </MenuItem>
                     </Link>
-                    <Link to='/'> <MenuItem onClick={handleCloseNavMenu}>
+                    <Link > <MenuItem onClick={handleCloseNavMenu}>
                         <Typography textAlign="center">About Us</Typography>
                     </MenuItem>
                     </Link>
-                    <Link to='/'> <MenuItem onClick={handleCloseNavMenu}>
+                    <Link > <MenuItem onClick={handleCloseNavMenu}>
                         <Typography textAlign="center">Contact Us</Typography>
                     </MenuItem>
                     </Link>
@@ -136,7 +141,7 @@ const Navbar = () => {
                 </Button>
                 </Link>
                 <Link>
-                <Button href='/' onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+                <Button  onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
                     About Us
                 </Button>
                 </Link>
@@ -154,7 +159,8 @@ const Navbar = () => {
                 </Box>
                 <Box sx={{ flexGrow: 0 }}>               
                                 
-                <Link to='/logIn'> <Button variant="contained">LogIn</Button></Link>
+                {user?<Button onClick={handleClick} variant="contained">LogOut</Button>
+                :<Link to='/logIn'> <Button variant="contained">LogIn</Button></Link>}
                 
                 <Menu
                     sx={{ mt: '45px' }}
