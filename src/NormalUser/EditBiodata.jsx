@@ -9,7 +9,7 @@ const EditBiodata = () => {
   let ID = data.length+1
   const onSubmit = (data) =>{
     data['biodataID']=ID   
-    axios.post('http://localhost:5000/biodatas', data)
+    axios.post('https://matrimony-server-6fqnjdrq2-shammo06.vercel.app/biodatas', data)
     .then(response  => {
       if(response.statusText==='OK'){
           swal("Successfully", "Your Biodata Successfully Publish", "success");

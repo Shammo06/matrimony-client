@@ -5,7 +5,7 @@ const useData = () => {
     const { refetch, data: data = [] } = useQuery({
         queryKey: ['data'],
         queryFn: async() => {
-            const res = await axios.get("http://localhost:5000/biodatas");
+            const res = await axios.get("https://matrimony-server-6fqnjdrq2-shammo06.vercel.app/biodatas");
             return res.data;
         }
     })

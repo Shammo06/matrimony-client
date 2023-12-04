@@ -9,7 +9,7 @@ const ViewBiodata = () => {
     const [data,refetch] = useData();
     const item = data.find(item => item && item.email === 'rahman@gmail.com');
     const handleClick= () =>{
-        fetch(`http://localhost:5000/biodata/${item._id}`, {
+        fetch(`https://matrimony-server-6fqnjdrq2-shammo06.vercel.app/biodata/${item._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

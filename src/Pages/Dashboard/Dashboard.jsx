@@ -7,12 +7,13 @@ import { AuthContext } from "../../AuthContext/AuthProvider";
 const Dashboard = () => {
     const [ID] = useUser();
     const { user} = useContext(AuthContext);
-    const data = ID.filter(item => item && item.email === `${user.email}`);
+    const data = ID.find(item => item && item.email === `${user.email}`);
     return (
         <div className="flex">
             
             <div className="w-64 min-h-screen bg-orange-400">
                 <ul className="menu p-4">
+                    { data?.role==='admin'?
                     <>
                             <li>
                                 <NavLink to="/dashboard/adminDashboard">
@@ -35,11 +36,11 @@ const Dashboard = () => {
                             </li>
                             
                     </>
-
+                        :
                     <>
                             <li>
                                 <NavLink to="/dashboard/editbiodata">
-                                    <button className='bg-gray-400'>Edit Biodata</button></NavLink>
+                                    <button className=''>Edit Biodata</button></NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/viewbiodata">
@@ -58,7 +59,7 @@ const Dashboard = () => {
                             </li>
                             
                     </>
-
+                    }
                            
                     <li>
                         <button className=''>Log Out</button>

@@ -40,7 +40,7 @@ const {logIn} = useContext(AuthContext);
         signInWithPopup(auth,provider)
         .then(result =>{
           const email = result.user.email;
-          axios.post('http://localhost:5000/user', {email,role:"regular"})
+          axios.post('https://matrimony-server-6fqnjdrq2-shammo06.vercel.app/user', {email,role:"regular"})
           .then(res => {
               console.log(res.data)
               if (res.data.insertedId) {

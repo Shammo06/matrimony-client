@@ -17,6 +17,7 @@ import EditBiodata from './NormalUser/EditBiodata.jsx';
 import ViewBiodata from './NormalUser/ViewBiodata.jsx';
 import {QueryClient,QueryClientProvider} from '@tanstack/react-query'
 import PrivateRoute from './Routes/PrivateRoutes.jsx';
+import Favourite from './NormalUser/Favourite.jsx';
 
 const queryClient = new QueryClient()
 
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
       {
         path:"/biodata/:id",
         element:<PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/biodata/${params.id}`) 
+        loader: ({ params }) => fetch(`https://matrimony-server-6fqnjdrq2-shammo06.vercel.app/biodata/${params.id}`) 
       },
     ]
   },
@@ -59,7 +60,12 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/viewbiodata',
         element: <PrivateRoute><ViewBiodata></ViewBiodata></PrivateRoute>
+      },
+      {
+        path: '/dashboard/favourite',
+        element: <PrivateRoute><Favourite></Favourite></PrivateRoute>
       }
+      
     ]
   }
 ]);

@@ -14,13 +14,13 @@ const ViewDetails = () => {
     const [item, setItem] = useState([]);
     
     useEffect(()=>{
-        axios(`http://localhost:5000/biodata?sex=${data.sex}`)
+        axios(`https://matrimony-server-6fqnjdrq2-shammo06.vercel.app/biodata?sex=${data.sex}`)
         .then(res=>setItem(res.data))
     })
 
     const handleFavourite = () =>{
         data["userEmail"]="shammo@gmail.com"
-        axios.post('http://localhost:5000/favourite', data)
+        axios.post('https://matrimony-server-6fqnjdrq2-shammo06.vercel.app/favourite', data)
           .then(response  => {
             if(response.data.insertedId){
                 swal("Successfully", "Added Successfully to Favourite", "success");

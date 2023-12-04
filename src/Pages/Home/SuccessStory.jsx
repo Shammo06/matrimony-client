@@ -10,7 +10,7 @@ const SuccessStory = () => {
     const [data,setData] = useState([])
     
     useEffect(()=>{
-        axios.get('http://localhost:5000/successStory')
+        axios.get('https://matrimony-server-6fqnjdrq2-shammo06.vercel.app/successStory')
         .then(res=> {
             setData(res.data);           
         })
