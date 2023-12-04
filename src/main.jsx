@@ -19,6 +19,7 @@ import {QueryClient,QueryClientProvider} from '@tanstack/react-query'
 import PrivateRoute from './Routes/PrivateRoutes.jsx';
 import Favourite from './NormalUser/Favourite.jsx';
 import AllUser from './AdminUser/AllUser.jsx';
+import AdminDashboard from './AdminUser/AdminDashboard.jsx';
 
 
 const queryClient = new QueryClient()
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/manageuser',
         element: <AllUser></AllUser>
+      },
+      {
+        path: '/dashboard/adminDashboard',
+        element: <AdminDashboard></AdminDashboard>
       }
       
     ]

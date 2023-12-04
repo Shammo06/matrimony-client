@@ -21,7 +21,7 @@ const Dashboard = () => {
                     <>
                             <li>
                                 <NavLink to="/dashboard/adminDashboard">
-                                    <button className='bg-gray-400'>Admin Dashboard</button></NavLink>
+                                    <button>Admin Dashboard</button></NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/manageuser">

@@ -10,15 +10,17 @@ const EditBiodata = () => {
   const { register, handleSubmit,reset } = useForm();
   const [data,refetch] = useData();
   let ID = data.length+1
+
   const onSubmit = (data) =>{
-    data['biodataID']=ID   
+    data['biodataID']=ID 
+    data["biodataType"]="regular"  
     axios.post('https://matrimony-server-liart.vercel.app/biodatas', data)
     .then(response  => {
-      if(response.statusText==='OK'){
+      
           swal("Successfully", "Your Biodata Successfully Publish", "success");
-          reset();
+          
           refetch();
-      }
+     
     })
     .catch(error=> {
       console.log(error);
@@ -156,7 +158,7 @@ const EditBiodata = () => {
         
         
 
-      <input className='px-5 my-5 bg-blue-600 text-white w-32 h-10' type="submit" />
+      <input className='px-5 my-5 bg-blue-600 text-white w-32 h-10' type="Submit" />
     </form>
     </div>
   )
