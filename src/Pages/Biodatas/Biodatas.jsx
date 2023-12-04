@@ -42,7 +42,7 @@ const Biodatas = () => {
 
 
     return (
-        <div className='flex px-5'>
+        <div className='md:flex px-5'>
             <div className="">
             <div className="w-80 gap-4 py-20">
                     <h1>Sort By Division</h1>
@@ -68,7 +68,7 @@ const Biodatas = () => {
                     />                    
                 </div>
             </div>
-           <div className="py-24">
+           <div className="md:pt-24 pb-24">
            <div className="text-center text-5xl pb-14">Biodatas</div> 
             <div className="grid md:grid-cols-3  gap-5">
             {

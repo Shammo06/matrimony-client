@@ -103,6 +103,11 @@ const Navbar = () => {
                         <Typography textAlign="center">Contact Us</Typography>
                     </MenuItem>
                     </Link>
+                    <Link to='/dashboard'>
+                    <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+                        Dashboard
+                    </Button>
+                    </Link>
                 
                 </Menu>
                 </Box>

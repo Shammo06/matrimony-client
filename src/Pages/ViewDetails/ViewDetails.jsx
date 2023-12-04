@@ -53,7 +53,7 @@ const ViewDetails = () => {
     
     return (
         <div className="md:flex">
-            <div className="py-10 px-28 border-r-2 border-orange-300">
+            <div className="py-10 md:px-28 border-r-2 border-orange-300">
             <Card sx={{ maxWidth: 345 }}>
             <img src={data.image} className=' w-full' /> 
             {
