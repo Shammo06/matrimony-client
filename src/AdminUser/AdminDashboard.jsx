@@ -10,7 +10,7 @@ const AdminDashboard = () => {
     const [data] = useData();
     const male = data.filter(item => item && item.sex === 'Male');
     const female = data.filter(item => item && item.sex === 'Female');
-    console.log(data,male,female)
+    
     return (
         <div className='py-10 bg-rose-400 text-rose-100'>
         <div className="text-center text-5xl py-14">Our Success Counter</div>

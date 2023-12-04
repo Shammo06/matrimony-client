@@ -38,10 +38,7 @@ const AllUser = () =>  {
             body: JSON.stringify({ role: 'admin' })
         })
             .then(res => res.json())
-            .then(res => {if (res.modifiedCount > 0) {
-                   swal("admin make Successfully");
-                }
-            })
+            .then(res => swal("admin make Successfully"))
     }
   return (
     <TableContainer component={Paper}>

@@ -4,10 +4,13 @@ import swal from "sweetalert";
 import Card from '@mui/material/Card';
 import useData from '../hook/useData';
 import Details from '../Shared/Details';
+import { useContext } from 'react';
+import { AuthContext } from '../AuthContext/AuthProvider';
 
 const ViewBiodata = () => {
     const [data,refetch] = useData();
-    const item = data.find(item => item && item.email === 'rahman@gmail.com');
+    const {user} = useContext(AuthContext);
+    const item = data.find(item => item && item.email === `${user.email}`);
     const handleClick= () =>{
         fetch(`https://matrimony-server-liart.vercel.app/biodata/${item._id}`, {
             method: 'PATCH',
