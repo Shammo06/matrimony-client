@@ -58,10 +58,16 @@ const defaultTheme = createTheme();
               displayName: name,
               photoURL:photo
           })
-          axios
-          logOut()
-          swal('Successfully Registered Please Log In')
-          navigate('/LogIn')      
+          axios.post('http://localhost:5000/user', {email,role:"regular"})
+          .then(res => {
+              console.log(res.data)
+              if (res.data.insertedId) {
+                logOut()
+                swal('Successfully Registered Please Log In')
+                navigate('/LogIn')  
+              }
+          })
+              
                          
       })
       .catch((error) => {

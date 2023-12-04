@@ -16,6 +16,7 @@ import AuthProvider from './AuthContext/AuthProvider.jsx';
 import EditBiodata from './NormalUser/EditBiodata.jsx';
 import ViewBiodata from './NormalUser/ViewBiodata.jsx';
 import {QueryClient,QueryClientProvider} from '@tanstack/react-query'
+import PrivateRoute from './Routes/PrivateRoutes.jsx';
 
 const queryClient = new QueryClient()
 
@@ -42,22 +43,22 @@ const router = createBrowserRouter([
       },
       {
         path:"/biodata/:id",
-        element:<ViewDetails></ViewDetails>,
+        element:<PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/biodata/${params.id}`) 
       },
     ]
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children :[
       {
         path: '/dashboard/editbiodata',
-        element: <EditBiodata></EditBiodata>
+        element: <PrivateRoute><EditBiodata></EditBiodata></PrivateRoute>
       },
       {
         path: '/dashboard/viewbiodata',
-        element: <ViewBiodata></ViewBiodata>
+        element: <PrivateRoute><ViewBiodata></ViewBiodata></PrivateRoute>
       }
     ]
   }

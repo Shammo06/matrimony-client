@@ -1,10 +1,16 @@
 import { NavLink, Outlet } from "react-router-dom";
+import useUser from "../../hook/useData";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthContext/AuthProvider";
 
 
 const Dashboard = () => {
+    const [ID] = useUser();
+    const { user} = useContext(AuthContext);
+    const data = ID.filter(item => item && item.email === `${user.email}`);
     return (
         <div className="flex">
-            {/* dashboard side bar */}
+            
             <div className="w-64 min-h-screen bg-orange-400">
                 <ul className="menu p-4">
                     <>

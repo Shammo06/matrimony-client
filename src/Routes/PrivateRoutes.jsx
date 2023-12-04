@@ -1,10 +1,12 @@
 import { Navigate, useLocation } from "react-router";
-import useAuth from "../hooks/useAuth";
 import { CircularProgress } from "@mui/material";
+import { useContext } from "react";
+import { AuthContext } from "../AuthContext/AuthProvider";
+import PropTypes from 'prop-types';
 
 
 const PrivateRoute = ({ children }) => {
-    const { user, loading } = useAuth();
+    const { user, loading } = useContext(AuthContext);
     const location = useLocation();
 
     if(loading){
@@ -17,4 +19,8 @@ const PrivateRoute = ({ children }) => {
     return <Navigate to="/login" state={{from: location}} replace></Navigate>
 };
 
+
+PrivateRoute.propTypes ={
+    children : PropTypes.node
+}
 export default PrivateRoute;

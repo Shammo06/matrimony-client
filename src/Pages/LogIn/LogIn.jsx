@@ -15,6 +15,7 @@ import swal from 'sweetalert';
 import { useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import auth from '../../firebase/firebase.config';
+import axios from 'axios';
 
 
 const LogIn = () => {
@@ -30,7 +31,7 @@ const {logIn} = useContext(AuthContext);
         const password = data.get('password')
         console.log(email,password)
         logIn(email , password)
-        .then(result =>console.log(result))
+        .then(result =>navigate(location.state ? location.state : '/'))
         .catch((error)=>{
             swal(`${error.message}`)
         })
@@ -38,7 +39,18 @@ const {logIn} = useContext(AuthContext);
       const handleClick = () => {
         signInWithPopup(auth,provider)
         .then(result =>{
-            console.log(result.user.email)
+          const email = result.user.email;
+          axios.post('http://localhost:5000/user', {email,role:"regular"})
+          .then(res => {
+              console.log(res.data)
+              if (res.data.insertedId) {
+                
+                swal('user added to database')
+                navigate(location.state ? location.state : '/')  
+                }
+              navigate(location.state ? location.state : '/')
+              })
+       
 
             navigate(location.state ? location.state : '/')
         })

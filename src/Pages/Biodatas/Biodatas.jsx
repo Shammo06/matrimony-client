@@ -8,7 +8,7 @@ const Biodatas = () => {
     const [sex,setSex] = useState({value:''}); 
     const [age,setAge] = useState({value: ''});
     const [data, setData] = useState([])
-    console.log(division,sex,age)
+    
 
     useEffect(()=>{
         axios(`http://localhost:5000/biodata?sex=${sex.value}&division=${division.value}&age=${age.value}`)
