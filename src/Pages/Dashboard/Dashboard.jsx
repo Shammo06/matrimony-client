@@ -29,7 +29,7 @@ const Dashboard = () => {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/approvedPremium">
+                                <NavLink to="/dashboard/approvePremium">
                                     Approved Premium   
                                 </NavLink>
                             </li>

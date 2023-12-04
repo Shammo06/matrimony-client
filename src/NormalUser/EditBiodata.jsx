@@ -15,12 +15,10 @@ const EditBiodata = () => {
     data['biodataID']=ID 
     data["biodataType"]="regular"  
     axios.post('https://matrimony-server-liart.vercel.app/biodatas', data)
-    .then(response  => {
-      
+    .then(response  => {      
           swal("Successfully", "Your Biodata Successfully Publish", "success");
-          
-          refetch();
-     
+          reset()
+          refetch();     
     })
     .catch(error=> {
       console.log(error);

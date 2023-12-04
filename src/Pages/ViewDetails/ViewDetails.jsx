@@ -3,15 +3,17 @@ import Typography from '@mui/material/Typography';
 import { Button } from "@mui/base";
 import axios from "axios";
 import ShareBiodata from "../../Shared/ShareBiodata";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import swal from "sweetalert";
 import Details from "../../Shared/Details";
 import Card from '@mui/material/Card';
+import { AuthContext } from "../../AuthContext/AuthProvider";
 
 
 const ViewDetails = () => {
     const data = useLoaderData();
     const [item, setItem] = useState([]);
+    const {user} = useContext(AuthContext);
     
     useEffect(()=>{
         axios(`https://matrimony-server-liart.vercel.app/biodata?sex=${data.sex}`)
@@ -19,31 +21,32 @@ const ViewDetails = () => {
     })
 
     const handleFavourite = () =>{
-        data["userEmail"]="shammo@gmail.com"
+        data["userEmail"]= user.email;
         axios.post('https://matrimony-server-liart.vercel.app/favourite', data)
           .then(response  => {
             if(response.data.insertedId){
                 swal("Successfully", "Added Successfully to Favourite", "success");
             }
+            else{swal("Already add to favourite");}
           })
           .catch(error=> {
-            console.log(error);
+            swal("Already add to favourite");
           }); 
     }
     const handleClick= () =>{
-        fetch(`https://matrimony-server-liart.vercel.app/biodata/${data._id}`, {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ biodataType: 'pending' })
-        })
-            .then(res => res.json())
-            .then(res => {if (res.modifiedCount > 0) {
-                   swal("Request make Successfully");
-                }
-            })
-    }
+        const user = data;
+        axios.post('https://matrimony-server-liart.vercel.app/contactrequest', user)
+          .then(response  => {
+            if(response.data.insertedId){
+                swal("Contact Requested", "success");}
+            
+          })
+          .catch(error=> {
+            console.log(error)
+          }); 
+            
+        }
+
     
 
 

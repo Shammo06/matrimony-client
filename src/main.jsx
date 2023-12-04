@@ -20,6 +20,7 @@ import PrivateRoute from './Routes/PrivateRoutes.jsx';
 import Favourite from './NormalUser/Favourite.jsx';
 import AllUser from './AdminUser/AllUser.jsx';
 import AdminDashboard from './AdminUser/AdminDashboard.jsx';
+import ApprovePremium from './AdminUser/ApprovePremium.jsx';
 
 
 const queryClient = new QueryClient()
@@ -70,11 +71,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/manageuser',
-        element: <AllUser></AllUser>
+        element: <PrivateRoute><AllUser></AllUser></PrivateRoute>
       },
       {
         path: '/dashboard/adminDashboard',
-        element: <AdminDashboard></AdminDashboard>
+        element: <PrivateRoute><AdminDashboard></AdminDashboard></PrivateRoute>
+      },
+      {
+        path: '/dashboard/approvePremium',
+        element: <PrivateRoute><ApprovePremium></ApprovePremium></PrivateRoute> 
       }
       
     ]

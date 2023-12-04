@@ -16,7 +16,7 @@ const BioData = () => {
              <div className="text-center text-5xl py-14">Biodatas</div>      
             <div className='grid md:grid-cols-3 md:px-24'>
                 {
-                    data.map(data=>
+                    data.slice(0, 6).map(data=>
                         <ShareBiodata key={data._id} item={data}/>
                         )
                 }

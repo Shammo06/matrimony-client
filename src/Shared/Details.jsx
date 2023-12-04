@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography';
 // eslint-disable-next-line react/prop-types
 const Details = ({item}) => {
     const data = item;
-    console.log(data)
     return (
         <div>       
             <CardContent>

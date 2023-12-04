@@ -5,13 +5,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import useData from '../hook/useData';
 import swal from 'sweetalert';
+import useData from '../hook/useData';
 
 
 
-const AllUser = () =>  {
+const ApprovePremium = () => {
     const [data,refetch] = useData();
+    const item = data.filter(item => item && item.biodataType === 'pending');
 
     const handlePremium= (Id) =>{
         fetch(`https://matrimony-server-liart.vercel.app/biodata/${Id}`, {
@@ -29,33 +30,20 @@ const AllUser = () =>  {
                 }
             })
     }
-    const handleAdmin = (email) =>{
-        fetch(`https://matrimony-server-liart.vercel.app/user/${email}`, {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ role: 'admin' })
-        })
-            .then(res => res.json())
-            .then(res => {if (res.modifiedCount > 0) {
-                   swal("admin make Successfully");
-                }
-            })
-    }
+    
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>User Name</TableCell>
-            <TableCell align="right">User Email</TableCell>
-            <TableCell align="right">Make Admin</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell align="right">Email</TableCell>
+            <TableCell align="right">Biodata ID</TableCell>
             <TableCell align="right">Make Premium</TableCell>
             </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row) => (
+          {item.map((row) => (
             <TableRow
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -64,7 +52,7 @@ const AllUser = () =>  {
                 {row.name}
               </TableCell>
               <TableCell align="right">{row.email}</TableCell>
-              <TableCell align="right"><button className="bg-blue-500 text-white" onClick={()=>handleAdmin(row.email)}>Make Admin</button></TableCell>
+              <TableCell align="right">{row.biodataID}</TableCell>
               <TableCell align="right"><button className="bg-blue-500 text-white" onClick={()=>handlePremium(row._id)}>{row.biodataType==="premium"?"Premium":"Make Premium"}</button></TableCell>
               
             </TableRow>
@@ -76,7 +64,4 @@ const AllUser = () =>  {
 }
 
 
-
-   
-
-export default AllUser;
+export default ApprovePremium;
