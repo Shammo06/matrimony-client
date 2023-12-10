@@ -1,6 +1,6 @@
 # Matrimony website named Biye Shadi
 
-# [Live Link]([(https://matrimony-client.web.app/)/]
+# [Live Link](https://matrimony-client.web.app/)
 
 
 ##Project Detatils:
