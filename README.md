@@ -3,14 +3,14 @@
 # [Live Link](https://matrimony-client.web.app/)
 
 
-##Project Detatils:
+## Project Detatils:
 - In this website user can find his/her life partner.
 - User can add biodata and can edit any time.
 - Admin can confirm user premium request.\
 - User can add favourite biodata and access contact information
 
 
-##Project Feature:
+## Project Feature:
 - Use react, twailwind, Material UI, firebase, Express js
 - Use MongoDB as Database
 - Use Admin and Normal user
