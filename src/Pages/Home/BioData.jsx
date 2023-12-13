@@ -6,11 +6,8 @@ const BioData = () => {
     const [data,setData] = useState([]);
     useEffect(()=>{
     axios.get('https://matrimony-server-liart.vercel.app/biodatas?biodataType=premium')
-    .then(response =>{setData(response.data);
-        console.log(response.data)
-    });
+    .then(response =>setData(response.data))
     })
-    console.log(data)
     return (
         <div>
              <div className="text-center text-5xl py-14">Biodatas</div>      
