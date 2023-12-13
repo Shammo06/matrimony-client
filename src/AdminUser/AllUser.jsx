@@ -61,8 +61,8 @@ const AllUser = () =>  {
                 {row.name}
               </TableCell>
               <TableCell align="right">{row.email}</TableCell>
-              <TableCell align="right"><button className="bg-blue-500 text-white" onClick={()=>handleAdmin(row.email)}>Make Admin</button></TableCell>
-              <TableCell align="right"><button className="bg-blue-500 text-white" onClick={()=>handlePremium(row._id)}>{row.biodataType==="premium"?"Premium":"Make Premium"}</button></TableCell>
+              <TableCell align="right"><button className="bg-blue-500 text-red-50 rounded-lg w-28" onClick={()=>handleAdmin(row.email)}>Make Admin</button></TableCell>
+              <TableCell align="right"><button className="bg-blue-500 text-red-50 rounded-lg w-28" onClick={()=>handlePremium(row._id)}>{row.biodataType==="premium"?"Premium":"Make Premium"}</button></TableCell>
               
             </TableRow>
           ))}

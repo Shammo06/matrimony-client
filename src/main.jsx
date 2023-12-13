@@ -21,6 +21,7 @@ import Favourite from './NormalUser/Favourite.jsx';
 import AllUser from './AdminUser/AllUser.jsx';
 import AdminDashboard from './AdminUser/AdminDashboard.jsx';
 import ApprovePremium from './AdminUser/ApprovePremium.jsx';
+import ErrorPage from './Pages/ErrorPage/ErrorPage.jsx';
 
 
 const queryClient = new QueryClient()
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    errorElement: <ErrorPage></ErrorPage>,
     children : [
       {
         path:"/",
@@ -58,7 +60,7 @@ const router = createBrowserRouter([
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children :[
       {
-        path: '/dashboard/editbiodata',
+        path: '/dashboard',
         element: <PrivateRoute><EditBiodata></EditBiodata></PrivateRoute>
       },
       {
@@ -74,7 +76,7 @@ const router = createBrowserRouter([
         element: <PrivateRoute><AllUser></AllUser></PrivateRoute>
       },
       {
-        path: '/dashboard/adminDashboard',
+        path: '/dashboard',
         element: <PrivateRoute><AdminDashboard></AdminDashboard></PrivateRoute>
       },
       {
